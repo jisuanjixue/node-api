@@ -9,11 +9,10 @@ const { User } = require('../../models')
         async me (_, args, { user}) {
           // make sure user is logged in
           if (!user) {
-            throw new Error('You are not authenticated!')
+            throw new Error('Not Authenticated')
           }
-
           // user is authenticated
-          return await User.findById(user.id)
+          return await User.findByPk(user.id)
         }
       },
 
