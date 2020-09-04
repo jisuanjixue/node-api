@@ -13,7 +13,8 @@ const { User } = require('../../models')
           }
           // user is authenticated
           return await User.findByPk(user.id)
-        }
+        },
+
       },
 
       Mutation: {
@@ -53,7 +54,8 @@ const { User } = require('../../models')
             process.env.JWT_SECRET,
             { expiresIn: '1d' }
           )
-        }
+        },
+        // logout: (_, args, context) => context.logout(),
       }
     }
 

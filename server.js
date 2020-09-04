@@ -5,6 +5,7 @@ const tokenData = require('jsonwebtoken')
 require("dotenv").config();
 
 const resolversAuth = require('./modules/auth/resolvers');
+const resolversPost = require('./modules/post/resolvers');
 const typeDefs = require('./schema');
 
 const getUser = token => {
@@ -30,18 +31,11 @@ const auth = jwt({
 const app = express();
 
 // graphql endpoint
-// app.use('/api', bodyParser.json(), auth, graphqlExpress(req => ({
-//     schema,
-//     context: {
-//       user: req.user
-//     }
-//   }))
-//   )
 app.use(auth)
   // #5 Initialize an Apollo server
 const server = new ApolloServer({
   typeDefs,
-  resolvers: [resolversAuth],
+  resolvers: [resolversAuth, resolversPost],
   context: ({ req }) => {
     const tokenWithBearer = req.headers.authorization || ''
     const token = tokenWithBearer.split(' ')[1]

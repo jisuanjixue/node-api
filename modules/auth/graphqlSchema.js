@@ -8,6 +8,7 @@ type User {
   }
   extend type Query {
     me: User
+    userlist: [User]
   }
   type AuthPayload {
     user: User
