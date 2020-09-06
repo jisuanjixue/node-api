@@ -11,6 +11,14 @@ module.exports = {
       username: {
         type: Sequelize.STRING
       },
+      postId: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {
+        model: 'Post', // name of Target model
+        key: 'id', // key in Target model that we're referencing
+        },
+       },
       email: {
         type: Sequelize.STRING
       },

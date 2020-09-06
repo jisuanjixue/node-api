@@ -1,4 +1,4 @@
-const { User } = require('../../models')
+const { User,Post } = require('../../models')
     const bcrypt = require('bcrypt')
     const jsonwebtoken = require('jsonwebtoken')
     require('dotenv').config()
@@ -12,7 +12,10 @@ const { User } = require('../../models')
             throw new Error('Not Authenticated')
           }
           // user is authenticated
-          return await User.findByPk(user.id)
+          return await User.findOne({
+            include: [{model: Post,  attributes: ["title"]}],
+            where: { id: user.id }
+          })
         },
 
       },

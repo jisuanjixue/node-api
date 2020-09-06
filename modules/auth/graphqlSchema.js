@@ -1,14 +1,15 @@
 const { gql } = require('apollo-server-express');
+const typeDefsPost = require('../types');
 
 const typeDefsAuth = gql`
+
 type User {
-    id: Int!
+    id: ID
     username: String!
     email: String!
   }
   extend type Query {
     me: User
-    userlist: [User]
   }
   type AuthPayload {
     user: User
